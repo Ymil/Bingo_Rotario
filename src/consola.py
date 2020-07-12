@@ -14,13 +14,12 @@ funcion_retorno = None
 #Funcion para obtener numeros de manera aleatoria
 def obtener_numero():
     logging.info('Verificando obtencion de numero')
-    if len(lista_numeros) == 0:
+    if len(lista_numeros) == 0:                    #Establezco que si la lista de numeros se vacia, se finalice la obtencion de numeros
         return False
     numero_obtenido = random.choice(lista_numeros) #Obtengo un numero de forma aleatoria de la lista de numeros establecidos
     lista_numeros.remove(numero_obtenido)          #El numero que obtengo de la lista, lo elimino de dicha lista para reducir posibilidades
     lista_historico.append(numero_obtenido)        #A una nueva lista, agrego los numeros que van saliendo
     lista_historico.reverse()                      #Intento registrar numeros a medida que salen pero se altera el orden. VERIFICAR
-    #print(lista_historico[len(lista_historico)])
     print(numero_obtenido)                         #Muestro por consola el numero obtenido
     print(lista_historico)                         #Muestro por consola la lista de numeros que van saliendo
     funcion_retorno(numero_obtenido)               #Permito la finalizacion del programa
@@ -33,12 +32,13 @@ def obtener_auto():
     while flag_auto:                               #Mientras flag se mantenga en True, ejecuta
         if not obtener_numero():                   #SI la funcion obtener_numero detecta que la lista_numeros se vacio, finaliza con el break
             break
-        time.sleep(1)                              #Tiempo de espera entre obtencion de numeros
+        time.sleep(tiempo_usuario)                 #Tiempo de espera entre obtencion de numeros
 
 numero_obtenido = 0
 lista_numeros = list(range( 1 , 21 ))              #Lista inicial que contiene los numeros necesarios para el bingo
-lista_historico=[]                                 #Creo la lista que registrara, en orden, los numeros que se obtendran aleatoriamente de la lista inicial
-i=0
+lista_historico = []                               #Creo la lista que registrara, en orden, los numeros que se obtendran aleatoriamente de la lista inicial
+i = 0
+
 
 t1 = threading.Thread(name = "obtener_auto" , target = obtener_auto)
 t2 = threading.Thread(name = "obtener_manual" , target = obtener_numero)
@@ -53,8 +53,8 @@ if __name__=="__main__":                           #Para indicar que se ejecuta 
         print("")
         print("1- Manual")
         print("2- Automatico")
-        print("3- Detener")
-        print("4- Continuar")
+        print("  3- Detener")
+        print("  4- Continuar")
         print("5- Reiniciar")
         print("")
         opcion = int(input('Elija su opción: '))
@@ -76,12 +76,23 @@ if __name__=="__main__":                           #Para indicar que se ejecuta 
                     i+=1
 
         elif opcion == 2:
-            # t1 = threading.Thread(name="obtener", target=obtener_auto)
-            pass
+            tiempo_usuario = int (input ('Seleccione tiempo: '))
+            flag_auto = True
+            t1 = threading.Thread(name="obtener", target=obtener_auto)
+            t1.start()
         elif opcion == 3:
             flag_auto = False
-            #t1.start()
         elif opcion == 4:
             flag_auto = True
             t1 = threading.Thread(name="obtener", target=obtener_auto)
             t1.start()
+                
+            # t1 = threading.Thread(name="obtener", target=obtener_auto)
+            # pass
+        # elif opcion == 3:
+            # flag_auto = False
+            #t1.start()
+        # elif opcion == 4:
+        #     flag_auto = True
+        #     t1 = threading.Thread(name="obtener", target=obtener_auto)
+        #     t1.start()
