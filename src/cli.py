@@ -20,7 +20,6 @@ def obtener_numero():
     numero_obtenido = random.choice(lista_numeros) #Obtengo un numero de forma aleatoria de la lista de numeros establecidos
     lista_numeros.remove(numero_obtenido)                                   #El numero que obtengo de la lista, lo elimino de dicha lista para reducir posibilidades
     bisect.insort(lista_historico, numero_obtenido, 0, 0)    #A una nueva lista, agrego los numeros que van saliendo
-    # lista_historico.reverse()                                             #Intento registrar numeros a medida que salen pero se altera el orden. VERIFICAR
     print(numero_obtenido)                         #Muestro por consola el numero obtenido
     print(lista_historico)                         #Muestro por consola la lista de numeros que van saliendo
     funcion_retorno(numero_obtenido)               #Permito la finalizacion del programa
