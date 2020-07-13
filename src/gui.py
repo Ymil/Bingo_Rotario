@@ -32,8 +32,8 @@ def Reiniciar():
     return
 
 def ultimo_valor(numero_obtenido):
-    entryText.set(numero_obtenido)
-    historicoText.set(cli.lista_historico[0:10])
+    ultimoNumero.set(numero_obtenido)
+    listaHistorica.set(cli.lista_historico[0:10])
     wave_obj = sa.WaveObject.from_wave_file("C:/Users/Lautaro/Desktop/Python_Proyects/Python_Bingo/Bingo_Rotario/src/static/"+str(numero_obtenido)+".wav")
     play_obj = wave_obj.play()
     # play_obj.wait_done()
@@ -47,13 +47,14 @@ tabla.grid(row = 4, column = 0, columnspan = 10)
 tabla.heading('#0', text = "1", anchor = CENTER)
 tabla.heading('#1', text = "2", anchor = CENTER)
 
-#Entrada
-entryText = StringVar()
-e_texto = Entry(ventana, font = ("Calibri 20"), textvariable = entryText)
-e_texto.grid(row = 0, column = 0, columnspan = 4, padx = 50, pady = 5)
-historicoText = StringVar()
-e_texto = Entry(ventana, font = ("Calibri 20"), textvariable = historicoText)
-e_texto.grid(row = 1, column = 0, columnspan = 4, padx = 50, pady = 5)
+#Entrada de ultimo numero y registro de ultimos 10 numeros salientes
+ultimoNumero = StringVar()
+mostrar_ultimo_numero = Entry(ventana, font = ("Calibri 20"), textvariable = ultimoNumero)
+mostrar_ultimo_numero.grid(row = 0, column = 0, columnspan = 2, padx = 10, pady = 10)
+
+listaHistorica = StringVar()
+mostrar_lista_historica = Entry(ventana, font = ("Calibri 20"), textvariable = listaHistorica)
+mostrar_lista_historica.grid(row = 1, column = 0, columnspan = 4, padx = 50, pady = 5)
 
 #Botones
 boton_Manual = Button(ventana, text = "Manual", width = 8, height = 2, command = lambda: Manual())              #A traves de lambda ejecuto la acción para este boton

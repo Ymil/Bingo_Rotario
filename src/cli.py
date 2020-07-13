@@ -15,14 +15,14 @@ funcion_retorno = None
 #Funcion para obtener numeros de manera aleatoria
 def obtener_numero():
     logging.info('Verificando obtencion de numero')
-    if len(lista_numeros) == 0:                    #Establezco que si la lista de numeros se vacia, se finalice la obtencion de numeros
+    if len(lista_numeros) == 0:                             #Establezco que si la lista de numeros se vacia, se finalice la obtencion de numeros
         return False
-    numero_obtenido = random.choice(lista_numeros) #Obtengo un numero de forma aleatoria de la lista de numeros establecidos
-    lista_numeros.remove(numero_obtenido)                                   #El numero que obtengo de la lista, lo elimino de dicha lista para reducir posibilidades
-    bisect.insort(lista_historico, numero_obtenido, 0, 0)    #A una nueva lista, agrego los numeros que van saliendo
-    print(numero_obtenido)                         #Muestro por consola el numero obtenido
-    print(lista_historico)                         #Muestro por consola la lista de numeros que van saliendo
-    funcion_retorno(numero_obtenido)               #Permito la finalizacion del programa
+    numero_obtenido = random.choice(lista_numeros)          #Obtengo un numero de forma aleatoria de la lista de numeros establecidos
+    lista_numeros.remove(numero_obtenido)                   #El numero que obtengo de la lista, lo elimino de dicha lista para reducir posibilidades
+    bisect.insort(lista_historico, numero_obtenido, 0, 0)   #A una nueva lista, agrego los numeros que van saliendo
+    print(numero_obtenido)                                  #Muestro por consola el numero obtenido
+    print(lista_historico)                                  #Muestro por consola la lista de numeros que van saliendo
+    funcion_retorno(numero_obtenido)                        #Permito la finalizacion del programa
     return numero_obtenido
 
 flag_auto = False                                  #Declaro un flag para cuando quiera cortar ejecucion automatica de obtencion de numeros
