@@ -1,5 +1,6 @@
 from tkinter import *
 from tkinter import ttk
+from os import path
 import simpleaudio as sa
 import cli
 import threading
@@ -33,8 +34,16 @@ def Reiniciar():
 
 def ultimo_valor(numero_obtenido):
     ultimoNumero.set(numero_obtenido)
+    archivo_sonido = "sounds/"+str(numero_obtenido)+".wav"
+    # print(archivo_sonido)
+    direccion_archivo = path.abspath(archivo_sonido)
+    # print(direccion_archivo)
+    direccion_archivo_corregida = (direccion_archivo).replace("\\", "/")
+    # print(direccion_archivo_corregida)
+    # direccion_archivo = str.replace('\', '/')
+    # print(direccion_archivo)
     listaHistorica.set(cli.lista_historico[0:10])
-    wave_obj = sa.WaveObject.from_wave_file("C:/Users/Lautaro/Desktop/Python_Proyects/Python_Bingo/Bingo_Rotario/src/static/"+str(numero_obtenido)+".wav")
+    wave_obj = sa.WaveObject.from_wave_file(direccion_archivo_corregida)
     play_obj = wave_obj.play()
     # play_obj.wait_done()
     
